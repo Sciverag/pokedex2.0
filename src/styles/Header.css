@@ -1,0 +1,18 @@
+.container-Header {
+    box-shadow: 0px 0px 5px gray;
+    background-color: rgb(189, 68, 68);
+    color: gold;
+    border-bottom: solid 5px brown;
+    text-shadow: 0px 0px 3px grey;
+    text-align: center;
+    font-size: 50px;
+    padding: 1%;
+    margin-bottom: auto;
+    min-height: 5vh;
+}
+
+div:has(.container-Header){
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

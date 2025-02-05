@@ -1,0 +1,10 @@
+.container-Footer {
+    box-shadow: 0px 0px 5px black;
+    background-color: rgb(189, 68, 68);
+    color: black;
+    text-align: center;
+    padding: 1%;
+    min-height: 5vh;
+    margin-top: auto;
+    border-top: solid 5px brown;
+}
