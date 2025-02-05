@@ -1,18 +1,40 @@
-.container-Header {
-    box-shadow: 0px 0px 5px gray;
-    background-color: rgb(189, 68, 68);
-    color: gold;
-    border-bottom: solid 5px brown;
-    text-shadow: 0px 0px 3px grey;
-    text-align: center;
-    font-size: 50px;
+header {
+    box-shadow: 0px 0px 5px grey;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
     padding: 1%;
-    margin-bottom: auto;
-    min-height: 5vh;
 }
 
-div:has(.container-Header){
-    position: sticky;
-    top: 0;
-    z-index: 1;
+header * {
+    align-self: center;
+    justify-self: center;
+}
+
+header h1 {
+    grid-column: 2;
+}
+
+header img {
+    width: 3vw;
+    justify-self: start;
+    border-radius: 100%;
+}
+
+header button {
+    background-color: whitesmoke;
+    border: solid 2px black;
+    border-radius: 10px;
+    min-width: 10vw;
+    min-height: 5vh;
+    text-align: center;
+    font-size: larger;
+    justify-self: end;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+header button:hover {
+    background-color: rgb(36, 36, 36);
+    color: whitesmoke;
 }

@@ -1,9 +1,12 @@
-import "../styles/Footer.css"
+import '../styles/Footer.css'
 
-export default function Header(){
+const Footer = () => {
+
     return (
-        <div>
-            <h1 className="container-Footer"></h1>
-        </div>
-    )
+        <footer>
+            <h1>POKEDEX</h1>
+        </footer>
+    );
 }
+
+export default Footer;

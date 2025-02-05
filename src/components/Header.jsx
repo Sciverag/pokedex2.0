@@ -1,9 +1,20 @@
-import "../styles/Header.css"
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./LoginButton";
+import '../styles/Header.css';
 
-export default function Header(){
+const Header = () => {
+
+    const { user } = useAuth0();
+    const { logout } = useAuth0();
+    const { isAuthenticated } = useAuth0();
+
     return (
-        <div>
-            <h1 className="container-Header">NATIONAL DWC POKEDEX</h1>
-        </div>
-    )
+        <header>
+            {isAuthenticated ? (<img src={user.picture} alt={user.name} />) : (<></>)}
+            <h1>POKEDEX</h1>
+            {isAuthenticated ? (<button className="btnLogout" onClick={() => logout()}> LOGOUT </button>) : (<LoginButton />)}
+        </header>
+    );
 }
+
+export default Header;
