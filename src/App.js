@@ -1,7 +1,7 @@
 import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from './components/Header';
-import Footer from './components/Footer';
+import Pokedex from './components/Pokedex';
 
 
 
@@ -15,8 +15,7 @@ function App() {
       {
         <>
           <Header />
-
-          <Footer />
+          {isAuthenticated ? (<Pokedex/>) : (<></>)}
         </>
       }
     </div>
