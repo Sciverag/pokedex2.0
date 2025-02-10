@@ -18,11 +18,14 @@ const Pokedex = () => {
     }, [])
 
     return (
-        <main className='container-Card'>
-            {pokemons.map((element, index) =>
-                <Card key={index} pokemon={element} />
-            )}
-        </main>
+        <>
+            <input type="text" />
+            <main className='container-Card'>
+                {pokemons.map((element, index) =>
+                    <Card key={index} pokemon={element} />
+                )}
+            </main>
+        </>
     );
 }
 
