@@ -3,46 +3,48 @@ import "../styles/Card.css";
 import axios from "axios";
 
 export default function Card({ pokemon }) {
-
-    const [pokemonData, setPokemon] = useState([]);
-    const [pokemonSprite, setSprite] = useState([]);
-    const [pokemonAbilities, setAbilities] = useState([]);
-
-    const getData = async () => {
-        const res = await axios.get(pokemon.url);
-        console.log(res.data);
-        setPokemon(res.data);
-        setSprite(res.data.sprites.front_default);
-        setAbilities(res.data.abilities.map((ability) =>
-            (ability.is_hidden) ? <li className="hidden-Card">{ability.ability.name}</li> : <li>{ability.ability.name}</li>));
-    }
-
-    
+    const [pokemonData, setPokemon] = useState(null);
 
     useEffect(() => {
-        getData()
+        const getData = async () => {
+            try {
+                if (pokemon.id) {
+                    setPokemon(pokemon);
+                } else {
+                    const res = await axios.get(pokemon.url);
+                    setPokemon(res.data);
+                }
+            } catch (error) {
+                console.error("Error al obtener datos del Pokémon:", error);
+            }
+        };
 
-    }, [])
+        getData();
+    }, [pokemon]);
 
-
+    if (!pokemonData) return <p>Cargando...</p>;
 
     return (
-
         <div className="card-Card">
-            <h1 className="pokemonName-Card">{pokemonData.id}. {pokemonData.name}</h1>
+            <h1 className="pokemonName-Card">
+                {pokemonData.id}. {pokemonData.name}
+            </h1>
             <div className="imageContainer-Card">
-                <img className="" src={pokemonSprite}></img>
+                <img src={pokemonData.sprites.front_default} alt={pokemonData.name} />
             </div>
             <h1>Habilidades</h1>
             <ul className="stats-Card">
-                {pokemonAbilities}
+                {pokemonData.abilities.map((ability, index) => (
+                    <li key={index} className={ability.is_hidden ? "hidden-Card" : ""}>
+                        {ability.ability.name}
+                    </li>
+                ))}
             </ul>
-            <h1>Estadisticas</h1>
+            <h1>Estadísticas</h1>
             <ul className="stats-Card">
                 <li>Altura: {pokemonData.height}</li>
                 <li>Peso: {pokemonData.weight}</li>
             </ul>
         </div>
-
-    )
+    );
 }
